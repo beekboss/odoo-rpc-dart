@@ -69,6 +69,7 @@ class OdooSession {
 
   /// Is internal user or not
   final bool isSystem;
+  final bool isInternalUser;
 
   /// Database name
   final String dbName;
@@ -88,6 +89,7 @@ class OdooSession {
     required this.userLang,
     required this.userTz,
     required this.isSystem,
+    required this.isInternalUser,
     required this.dbName,
     required this.serverVersion,
   });
@@ -145,6 +147,7 @@ class OdooSession {
       userLang: ctx['lang'] as String,
       userTz: ctx['tz'] is String ? ctx['tz'] as String : 'UTC',
       isSystem: info['is_system'] as bool,
+      isInternalUser: info['is_internal_user'] as bool,
       dbName: info['db'] as String,
       serverVersion: versionInfo[0].toString(),
     );
@@ -163,6 +166,7 @@ class OdooSession {
       'userLang': userLang,
       'userTz': userTz,
       'isSystem': isSystem,
+      'isInternalUser': isInternalUser,
       'dbName': dbName,
       'serverVersion': serverVersion,
     };
@@ -182,6 +186,7 @@ class OdooSession {
       userLang: json['userLang'] as String,
       userTz: json['userTz'] as String,
       isSystem: json['isSystem'] as bool,
+      isInternalUser: json['isInternalUser'] as bool,
       dbName: json['dbName'] as String,
       serverVersion: json['serverVersion'].toString(),
     );
@@ -200,6 +205,7 @@ class OdooSession {
       userLang: newSessionId == '' ? '' : userLang,
       userTz: newSessionId == '' ? '' : userTz,
       isSystem: newSessionId == '' ? false : isSystem,
+      isInternalUser: newSessionId == '' ? false : isInternalUser,
       dbName: newSessionId == '' ? '' : dbName,
       serverVersion: newSessionId == '' ? '' : serverVersion,
     );
